@@ -41,7 +41,7 @@ In the above example, the return type for the ```main``` function is an ```i32``
 
 ### Bit Field Operators
 
-Courier offers built-in operators for dealing with bit-fields, which are very useful when dealing with serialized data over a network.
+Courier offers built-in operators for working with bit-fields, which are very useful when dealing with serialized data over a network.
 
 For example, let's say we wanted to get bit 2-5 (0-indexed inclusive) out of a byte.
 
@@ -53,18 +53,18 @@ uint8_t mask = 0x3c;        // 00111100
 uint8_t result = (byte & mask) >> 2; // Apply mask and shift.
 ```
 
-In Courier, we can simply use a built-in operator to solve this without masks or bitshifts.
+In Courier, we can simply use a built-in operator to solve this without masks or bit-shifts.
 
 ```C
 u8 byte = b10101010;
-u4 result = byte<2:6>;  // Top end not inclusive, similar to Python ranges.
+u4 result = byte<2:5>; // result -> 1010
 ```
 
-Not only are we able to make use of a built-in bitfield operator: ```<>```, but we are also able to create a custom fixed-width integer that matches the number of bytes we extract (```u4```).
+Not only are we able to make use of a built-in bit-field operator: ```<>```, but we are also able to create a custom fixed-width integer that matches the number of bits we extract (```u4```).
 
 In a second example, let's say we simply want to set a bit within a byte to ```1```, while preserving the value of all other bits.
 
-This is extremely useful in protocols that use bitfields smaller than a byte.
+This is extremely useful in protocols that use bit-fields smaller than a byte.
 
 In C, we would write:
 
@@ -87,7 +87,7 @@ We can also set a range of bits to a specific value with the same operator:
 
 ```C
 u8 byte = b00000000;
-byte<4:6> = b111; // byte -> b00001100 (4-6 not inclusive of 6).
+byte<4:6> = b111; // byte -> b00001110.
 ```
 
 ## Serialization and Deserialization
@@ -149,7 +149,7 @@ sock.send(my_msg);
 Receiving becomes trivial as well:
 
 ```C
-bstring data = sock.recv(sizeof(msg)); // bytestring data type.
+bstring data = sock.recv(msg.size); // bytestring data type.
 msg my_msg = unpack(data); // Unpack raw bytes into the msg field.
 ```
 
