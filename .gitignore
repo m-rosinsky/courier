@@ -34,3 +34,9 @@
 # Makefile intermediaries.
 bins/*
 objs/*
+
+# Vscode files.
+*.vscode*
+
+# Courier source files.
+*.cour
