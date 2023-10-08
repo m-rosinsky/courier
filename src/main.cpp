@@ -18,17 +18,22 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    // Create the token table.
-    std::vector<std::shared_ptr<lexer_token>> token_table;
+    // Create the lexer object.
+    Lexer lexer;
 
-    // Tokenize the input file.
-    if (LEXER_SUCCESS != tokenize_file(argv[1], token_table))
+    // Tokenize input file.
+    lexer.tokenize_file(argv[1]);
+
+    // Perform error checking.
+    if (!lexer.get_error().is_success())
     {
-        std::cerr << "Syntax error" << std::endl;
+        std::cerr << lexer.get_error().report() << std::endl;
+        return 1;
     }
 
     // Dump the table.
-    for (auto it = token_table.begin(); it != token_table.end(); ++it)
+    auto table = lexer.get_table();
+    for (auto it = table.begin(); it != table.end(); ++it)
     {
         std::cout << "Entry:\n";
         std::cout << "\t" << it->get()->_token << "\n";

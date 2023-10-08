@@ -49,6 +49,10 @@ setup:
 compile: setup
 	@echo "Compiling sources (debug)..."
 
+# Compile error.
+	@$(CC) $(CFLAGS) -o $(OBJS)/error.o -c $(SRCS)/error/error.cpp
+	@echo "  [+] Compiled ./src/error/error.o"
+
 # Compile lexer.
 	@$(CC) $(CFLAGS) -o $(OBJS)/lexer.o -c $(SRCS)/lexer/lexer.cpp
 	@echo "  [+] Compiled ./src/lexer/lexer.o"
@@ -70,6 +74,10 @@ link: setup compile
 
 compile-release: setup
 	@echo "Compiling sources..."
+
+# Compile error.
+	@$(CC) $(CFLAGS_RELEASE) -o $(OBJS)/error.o -c $(SRCS)/error/error.cpp
+	@echo "  [+] Compiled ./src/error/error.o"
 
 # Compile lexer.
 	@$(CC) $(CFLAGS_RELEASE) -o $(OBJS)/lexer.o -c $(SRCS)/lexer/lexer.cpp
