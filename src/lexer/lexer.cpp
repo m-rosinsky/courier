@@ -129,9 +129,9 @@ void Lexer::tokenize_symbol (const std::string& __line)
     // Token is fully formed. Add to table.
     lexer_token l_token = 
     {
-        _token,                  // _token
+        _token,                 // _token
         LEXER_TOKEN_SYMBOL,     // _type
-        _line_num,             // _line_num
+        _line_num,              // _line_num
         token_start_idx         // _col_num
     };
 
