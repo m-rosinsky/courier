@@ -6,9 +6,24 @@
 
 #include <iostream>
 
-int main()
+#include "lexer/lexer.hpp"
+
+int main(int argc, char *argv[])
 {
-    std::cout << "Hello, World!" << std::endl;
+    if (2 != argc)
+    {
+        std::cerr << "Usage: $ courier [filename]" << std::endl;
+        return 1;
+    }
+
+    Lexer lexer(argv[1]);
+    if (-1 == lexer.tokenize_file())
+    {
+        std::cerr << "Error: Lexer" << std::endl;
+        return 1;
+    }
+
+    std::cout << lexer._fdata << std::endl;
 }
 
 /***   end of file   ***/

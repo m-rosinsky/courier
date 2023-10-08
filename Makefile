@@ -49,13 +49,17 @@ setup:
 compile: setup
 	@echo "Compiling sources (debug)..."
 
+# Compile lexer.
+	@$(CC) $(CFLAGS) -o $(OBJS)/lexer.o -c $(SRCS)/lexer/lexer.cpp
+	@echo "  [+] Compiled ./src/lexer/lexer.o"
+
 	@echo "Done!"
 
 link: setup compile
 	@echo "Linking binaries (debug)..."
 
 # Link main.
-	@$(CC) $(CFLAGS) -o $(BINS)/courier $(SRCS)/main.cpp # $(OBJS)/*.o
+	@$(CC) $(CFLAGS) -o $(BINS)/courier $(SRCS)/main.cpp $(OBJS)/*.o
 	@echo "  [+] Created binary ./$(BINS)/courier"
 
 	@echo "Done!"
@@ -67,13 +71,17 @@ link: setup compile
 compile-release: setup
 	@echo "Compiling sources..."
 
+# Compile lexer.
+	@$(CC) $(CFLAGS_RELEASE) -o $(OBJS)/lexer.o -c $(SRCS)/lexer/lexer.cpp
+	@echo "  [+] Compiled ./src/lexer/lexer.o"
+
 	@echo "Done!"
 
 link-release: setup compile-release
 	@echo "Linking binaries..."
 
 # Link main.
-	@$(CC) $(CFLAGS_RELEASE) -o $(BINS)/courier $(SRCS)/main.cpp # $(OBJS)/*.o
+	@$(CC) $(CFLAGS_RELEASE) -o $(BINS)/courier $(SRCS)/main.cpp $(OBJS)/*.o
 	@echo "  [+] Created binary ./$(BINS)/courier"
 
 	@echo "Done!"
