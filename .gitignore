@@ -31,5 +31,6 @@
 *.out
 *.app
 
-# CMake build.
-build/*
+# Makefile intermediaries.
+bins/*
+objs/*
