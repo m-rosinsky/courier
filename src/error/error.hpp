@@ -19,6 +19,10 @@
 
 // Syntax Errors.
 #define ERR_UNREC_SYMB 1        // Unrecognized symbol.
+#define ERR_INVAL_NUM 2         // Invalid number.
+
+// Memory Errors.
+#define ERR_MEM_ALLOC 3         // Memory allocation error.
 
 class Error
 {

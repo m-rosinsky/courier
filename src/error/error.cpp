@@ -29,6 +29,12 @@ static std::string get_err_msg(uint8_t err_type)
         case ERR_UNREC_SYMB:
             return "Unrecognized symbol";
         break;
+        case ERR_INVAL_NUM:
+            return "Invalid numeric literal";
+        break;
+        case ERR_MEM_ALLOC:
+            return "Memory allocation error";
+        break;
         default:
             return "";
         break;

@@ -19,8 +19,9 @@
 #include "../error/error.hpp"
 
 #define LEXER_TOKEN_SYMBOL      0
-#define LEXER_TOKEN_OPERATOR    1
-#define LEXER_TOKEN_DELIM       2
+#define LEXER_TOKEN_NUM         1
+#define LEXER_TOKEN_OPERATOR    2
+#define LEXER_TOKEN_DELIM       3
 
 /*!
  * @brief This struct defines an entry for a token to be stored
@@ -31,13 +32,21 @@
  * @param _line_num The line number the token appears on.
  * @param _col_num The column number the token appears on.
  */
-struct lexer_token
+struct token_t
 {
     std::string _token;
     uint8_t _type;
     uint32_t _line_num;
     uint32_t _col_num;
+
+    token_t(const std::string& __token,
+            uint8_t __type,
+            uint32_t __line_num,
+            uint32_t __col_num)
+        : _token(__token), _type(__type), _line_num(__line_num), _col_num(__col_num) {}
 };
+
+typedef std::shared_ptr<token_t> sp_token_t;
 
 /*!
  * @brief This class defines the lexer class, which is used to tokenize
@@ -54,7 +63,7 @@ private:
 
     Error _err;         // The error status of lexer operations.
 
-    std::vector<std::shared_ptr<lexer_token>> _table; // The table of tokens.
+    std::vector<sp_token_t> _table; // The table of tokens.
 
 public:
     
@@ -65,7 +74,7 @@ public:
           _line_num(1), _line_idx(0) {}
 
     // Accessors.
-    const std::vector<std::shared_ptr<lexer_token>>& get_table(void) const;
+    const std::vector<sp_token_t>& get_table(void) const;
     const Error& get_error(void) const;
 
     // Modifiers.
@@ -74,8 +83,13 @@ public:
 private:
     // Helper functions.
     void tokenize_line(const std::string& __line);
+
     void tokenize_symbol(const std::string& __line);
-    void tokenize_operator(const std::string& __line);
+    void tokenize_num(const std::string& __line);
+    void tokenize_op(const std::string& __line);
+    void tokenize_delim(const std::string& __line);
+
+    void push_token(uint8_t __type, uint32_t __col_num);
 };
 
 #endif // _COURIER_SRC_LEXER_LEXER_HPP

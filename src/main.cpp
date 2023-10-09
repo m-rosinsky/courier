@@ -33,12 +33,11 @@ int main(int argc, char *argv[])
 
     // Dump the table.
     auto table = lexer.get_table();
+    std::cout << "Lexer token table:" << std::endl;
     for (auto it = table.begin(); it != table.end(); ++it)
     {
-        std::cout << "Entry:\n";
-        std::cout << "\t" << it->get()->_token << "\n";
-        std::cout << "\t" << it->get()->_line_num << "\n";
-        std::cout << "\t" << it->get()->_col_num << "\n\n";
+        std::cout << it->get()->_token << " | " << (int) it->get()->_type << " | ";
+        std::cout << it->get()->_line_num << " | " << it->get()->_col_num << std::endl;
     }
     std::cout << std::endl;
 
