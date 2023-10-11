@@ -18,11 +18,11 @@
 
 #include "../error/error.hpp"
 
-#define LEXER_TOKEN_SYMBOL      0
-#define LEXER_TOKEN_NUM         1
-#define LEXER_TOKEN_OPERATOR    2
-#define LEXER_TOKEN_DELIM       3
-#define LEXER_TOKEN_CTRL        4
+constexpr int LEXER_TOKEN_SYMBOL      = 0;
+constexpr int LEXER_TOKEN_NUM         = 1;
+constexpr int LEXER_TOKEN_OPERATOR    = 2;
+constexpr int LEXER_TOKEN_DELIM       = 3;
+constexpr int LEXER_TOKEN_CTRL        = 4;
 
 /*!
  * @brief This struct defines an entry for a token to be stored

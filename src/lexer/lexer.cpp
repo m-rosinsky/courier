@@ -18,7 +18,7 @@
 
 #include "lexer.hpp"
 
-#define CHAR_COMMENT '#'
+constexpr char CHAR_COMMENT = '#';
 
 /******************************************************************************/
 /*                            Static functions                                */
@@ -121,7 +121,7 @@ void Lexer::tokenize_file (const std::string& __fname)
     // Set the filename.
     _fname = __fname;
 
-    std::string line = "";
+    std::string line;
 
     // Open the file for reading.
     std::ifstream input_file(_fname);
