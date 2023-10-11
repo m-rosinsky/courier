@@ -315,6 +315,34 @@ void Lexer::tokenize_delim(const std::string& __line)
 /******************************************************************************/
 
 /*!
+ * @brief This function tokenizes a control structure.
+ *
+ * @param[in] __line The line being tokenized.
+ * 
+ * @return None, but set _err on error.
+ */
+void Lexer::tokenize_ctrl(const std::string& __line)
+{
+    // Clear the current token.
+    _token.clear();
+
+    // Bookmark the start index of the token.
+    uint32_t token_start_idx = _line_idx + 1; // +1 since idx is zero based.
+
+    // Capture the current character and increment index.
+    char c = __line[_line_idx];
+    _line_idx++;
+
+    // Create token.
+    _token.push_back(c);
+
+    // Allocate new token.
+    push_token(LEXER_TOKEN_CTRL, token_start_idx);
+}
+
+/******************************************************************************/
+
+/*!
  * @brief This function tokenizes a single line from the input file.
  *
  * @param[in] __line The line to tokenize.
@@ -373,9 +401,17 @@ void Lexer::tokenize_line (const std::string& __line)
             continue;
         }
 
+        // Delimiters (';', ',',  etc.)
         if (is_delim(c))
         {
             tokenize_delim(__line);
+            continue;
+        }
+
+        // Control structures ('{', '}', '(', ')')
+        if (is_ctrl(c))
+        {
+            tokenize_ctrl(__line);
             continue;
         }
         

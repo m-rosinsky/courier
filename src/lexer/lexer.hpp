@@ -22,6 +22,7 @@
 #define LEXER_TOKEN_NUM         1
 #define LEXER_TOKEN_OPERATOR    2
 #define LEXER_TOKEN_DELIM       3
+#define LEXER_TOKEN_CTRL        4
 
 /*!
  * @brief This struct defines an entry for a token to be stored
@@ -88,6 +89,7 @@ private:
     void tokenize_num(const std::string& __line);
     void tokenize_op(const std::string& __line);
     void tokenize_delim(const std::string& __line);
+    void tokenize_ctrl(const std::string& __line);
 
     void push_token(uint8_t __type, uint32_t __col_num);
 };
