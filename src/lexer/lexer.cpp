@@ -12,10 +12,6 @@
 #include <fstream>          // std::ifstream
 #include <stdexcept>        // std::exception
 
-/***DEBUG***/
-#include <iostream>
-/***DEBUG***/
-
 #include "lexer.hpp"
 
 constexpr char CHAR_COMMENT = '#';
