@@ -8,19 +8,22 @@
 
 void test_func_1(void)
 {
+    int t;
+    COURIER_ASSERT_EQUAL(t, 3);
     return;
 }
 
 void test_func_2(void)
 {
+    int x = 3;
+    COURIER_ASSERT_EQUAL(x, 3);
     return;
 }
 
 int main()
 {
     // Create the courier unit test object.
-    CourierUnitTest main_test;
-    main_test.set_name("main_test");
+    CourierUnitTest main_test("main_test");
 
     // Create the first test suite.
     CourierTestSuite suite_1("suite 1");

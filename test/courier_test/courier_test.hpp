@@ -10,8 +10,36 @@
 
 #include <functional>           // std::function
 #include <string>               // std::string
-#include <utility>              // std::pair
 #include <vector>               // std::vector
+
+/******************************************************************************/
+/*                    CourierUnitTest Assert Macros                           */
+/******************************************************************************/
+
+/*!
+ * @brief This macro tests a basic assertion to be true.
+ */
+#define COURIER_ASSERT(value) \
+    { courier_assert((value), ("COURIER_ASSERT(" #value ")"), __LINE__, __FILE__); }
+
+/*!
+ * @brief This macro tests if an actual value matches its expected.
+ */
+#define COURIER_ASSERT_EQUAL(actual, expected) \
+    { courier_assert(((actual) == (expected)), ("COURIER_ASSERT_EQUAL(" #actual "," #expected ")"), __LINE__, __FILE__); }
+
+/******************************************************************************/
+/*                  CourierUnitTest Assert Functionality                      */
+/******************************************************************************/
+
+void courier_assert(const bool& __b_value,
+                    const std::string& __s_value,
+                    const uint32_t __line,
+                    const std::string& __file);
+
+/******************************************************************************/
+/*                        CourierUnitTest Classes                             */
+/******************************************************************************/
 
 /*!
  * @brief This typedef provides the function pointer type for
@@ -72,11 +100,15 @@ private:
 
 public:
 
+    // Delete default ctor.
+    CourierUnitTest() = delete;
+    CourierUnitTest(const std::string& __name)
+        : _name(__name), _error_status(0) {}
+
     // Accessors.
     int get_error(void) const;
 
     // Modifiers
-    void set_name(const std::string& __name) noexcept;
     void add_suite(const CourierTestSuite& __suite) noexcept;
     
     // Test functions.
