@@ -169,4 +169,61 @@ void test_lexer_multi_line(void)
     COURIER_ASSERT_EQUAL(status, 0);
 }
 
+/******************************************************************************/
+
+/*!
+ * @brief This function tests the lexer against a file with a bad numeric
+ *          literal.
+ *
+ * @result The lexer should return an error of type ERR_INVAL_NUM.
+ */
+void test_lexer_bad_num(void)
+{
+    // Create test file.
+    std::string fname = "/tmp/lexer_bad_num.txt";
+    std::string contents = "x = 4a"; // Invalid number '4a'
+
+    int status = create_test_file(fname, contents);
+    COURIER_ASSERT_EQUAL(status, 0);
+    if (0 != status) { return; }
+
+    // Lex test file.
+    g_lexer.tokenize_file(fname);
+
+    // Ensure proper error was returned.
+    COURIER_ASSERT_EQUAL(g_lexer.get_error()._status, ERR_INVAL_NUM);
+
+    // Destroy test file.
+    status = std::remove(fname.c_str());
+    COURIER_ASSERT_EQUAL(status, 0);
+}
+
+/******************************************************************************/
+
+/*!
+ * @brief This function tests the lexer against a file with unicode characters.
+ *
+ * @result The lexer should return an error of type ERR_UNREC_SYMB.
+ */
+void test_lexer_unicode(void)
+{
+    // Create test file.
+    std::string fname = "/tmp/lexer_unicode.txt";
+    std::string contents = "😀😁😑"; // Invalid unicode.
+
+    int status = create_test_file(fname, contents);
+    COURIER_ASSERT_EQUAL(status, 0);
+    if (0 != status) { return; }
+
+    // Lex test file.
+    g_lexer.tokenize_file(fname);
+
+    // Ensure proper error was returned.
+    COURIER_ASSERT_EQUAL(g_lexer.get_error()._status, ERR_UNREC_SYMB);
+
+    // Destroy test file.
+    status = std::remove(fname.c_str());
+    COURIER_ASSERT_EQUAL(status, 0);
+}
+
 /***   end of file   ***/

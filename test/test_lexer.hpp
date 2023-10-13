@@ -15,10 +15,8 @@ void test_lexer_one_line(void);
 void test_lexer_multi_line(void);
 
 // Invalid cases.
-/*
 void test_lexer_bad_num(void);
 void test_lexer_unicode(void);
-*/
 
 #endif // _COURIER_TEST_TEST_LEXER_HPP
 

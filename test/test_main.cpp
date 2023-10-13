@@ -14,9 +14,15 @@ int main()
 
     // Create the first test suite.
     CourierTestSuite lexer_test_suite_1("lexer_test_suite_1");
+
+    // Valid tests.
     lexer_test_suite_1.add_test("test_lexer_empty", test_lexer_empty);
     lexer_test_suite_1.add_test("test_lexer_one_line", test_lexer_one_line);
     lexer_test_suite_1.add_test("test_lexer_multi_line", test_lexer_multi_line);
+
+    // Invalid tests.
+    lexer_test_suite_1.add_test("test_lexer_bad_num", test_lexer_bad_num);
+    lexer_test_suite_1.add_test("test_lexer_unicode", test_lexer_unicode);
 
     // Add the suite to the unit test.
     lexer_test.add_suite(lexer_test_suite_1);
