@@ -104,6 +104,10 @@ link-release: setup compile-release
 test: setup compile
 	@echo "Compiling test libraries..."
 
+# Compile lexer test functions.
+	@$(CC) $(CFLAGS) -o $(OBJS)/test_lexer.o -c $(TEST)/test_lexer.cpp
+	@echo "  [+] Compiled $(OBJS)/test_lexer.o"
+
 # Compile unit test library.
 	@$(CC) $(CFLAGS) -o $(OBJS)/courier_test.o -c $(TEST)/courier_test/courier_test.cpp
 	@echo "  [+] Compiled $(OBJS)/courier_test.o"

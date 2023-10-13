@@ -32,6 +32,14 @@
                      ("COURIER_ASSERT_EQUAL(" #actual "," #expected ")"), \
                      __LINE__, __FILE__); }
 
+/*!
+ * @brief This macro tests if an actual value does not match its expected.
+ */
+#define COURIER_ASSERT_NOT_EQUAL(actual, expected) \
+    { courier_assert(((actual) != (expected)), \
+                     ("COURIER_ASSERT_NOT_EQUAL(" #actual "," #expected ")"), \
+                     __LINE__, __FILE__); }
+
 /******************************************************************************/
 /*                  CourierUnitTest Assert Functionality                      */
 /******************************************************************************/

@@ -163,7 +163,7 @@ void CourierUnitTest::run_tests(void)
 void CourierUnitTest::run_test_suite(const CourierTestSuite& __suite)
 {
     // Let stdout know we are running the test suite.
-    std::cout << "Running test suite '" << __suite._name << "'..." << std::endl;
+    std::cout << "\nRunning test suite '" << __suite._name << "'..." << std::endl;
 
     // Increment the global number of suites run.
     g_num_suite++;

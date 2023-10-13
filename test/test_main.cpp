@@ -5,41 +5,27 @@
  */
 
 #include "courier_test/courier_test.hpp"
-
-void test_func_1(void)
-{
-    int t = 0;
-    COURIER_ASSERT_EQUAL(t, 0);
-    return;
-}
-
-void test_func_2(void)
-{
-    int x = 3;
-    COURIER_ASSERT_EQUAL(x, 2);
-    COURIER_ASSERT_EQUAL(x, 3);
-    COURIER_ASSERT_EQUAL(x, 4);
-    return;
-}
+#include "test_lexer.hpp"
 
 int main()
 {
     // Create the courier unit test object.
-    CourierUnitTest main_test("main_test");
+    CourierUnitTest lexer_test("lexer_test");
 
     // Create the first test suite.
-    CourierTestSuite suite_1("suite 1");
-    suite_1.add_test("test_func_1", test_func_1);
-    suite_1.add_test("test_func_2", test_func_2);
+    CourierTestSuite lexer_test_suite_1("lexer_test_suite_1");
+    lexer_test_suite_1.add_test("test_lexer_empty", test_lexer_empty);
+    lexer_test_suite_1.add_test("test_lexer_one_line", test_lexer_one_line);
+    lexer_test_suite_1.add_test("test_lexer_multi_line", test_lexer_multi_line);
 
     // Add the suite to the unit test.
-    main_test.add_suite(suite_1);
+    lexer_test.add_suite(lexer_test_suite_1);
 
     // Run the tests.
-    main_test.run_tests();
+    lexer_test.run_tests();
 
     // Return the error.
-    return main_test.get_error();
+    return lexer_test.get_error();
 }
 
 /***   end of file   ***/
