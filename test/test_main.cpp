@@ -8,15 +8,17 @@
 
 void test_func_1(void)
 {
-    int t;
-    COURIER_ASSERT_EQUAL(t, 3);
+    int t = 0;
+    COURIER_ASSERT_EQUAL(t, 0);
     return;
 }
 
 void test_func_2(void)
 {
     int x = 3;
+    COURIER_ASSERT_EQUAL(x, 2);
     COURIER_ASSERT_EQUAL(x, 3);
+    COURIER_ASSERT_EQUAL(x, 4);
     return;
 }
 

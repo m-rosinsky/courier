@@ -20,13 +20,17 @@
  * @brief This macro tests a basic assertion to be true.
  */
 #define COURIER_ASSERT(value) \
-    { courier_assert((value), ("COURIER_ASSERT(" #value ")"), __LINE__, __FILE__); }
+    { courier_assert((value), \
+                     ("COURIER_ASSERT(" #value ")"), \
+                     __LINE__, __FILE__); }
 
 /*!
  * @brief This macro tests if an actual value matches its expected.
  */
 #define COURIER_ASSERT_EQUAL(actual, expected) \
-    { courier_assert(((actual) == (expected)), ("COURIER_ASSERT_EQUAL(" #actual "," #expected ")"), __LINE__, __FILE__); }
+    { courier_assert(((actual) == (expected)), \
+                     ("COURIER_ASSERT_EQUAL(" #actual "," #expected ")"), \
+                     __LINE__, __FILE__); }
 
 /******************************************************************************/
 /*                  CourierUnitTest Assert Functionality                      */
