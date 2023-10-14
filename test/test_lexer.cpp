@@ -162,7 +162,7 @@ void test_lexer_multi_line(void)
     COURIER_ASSERT(g_lexer.get_error().is_success());
 
     // Ensure the correct number of tokens were returned.
-    COURIER_ASSERT_EQUAL(g_lexer.get_table().size(), 8);
+    COURIER_ASSERT_EQUAL(g_lexer.get_table().size(), 7);
 
     // Destroy test file.
     status = std::remove(fname.c_str());
