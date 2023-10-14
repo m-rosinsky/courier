@@ -117,6 +117,12 @@ void Lexer::tokenize_file (const std::string& __fname)
     // Set the filename.
     _fname = __fname;
 
+    // Clear the table.
+    _table.clear();
+
+    // Reset the error.
+    _err.clear();
+
     std::string line;
 
     // Open the file for reading.

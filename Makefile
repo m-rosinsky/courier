@@ -15,6 +15,9 @@ CFLAGS=$(CFLAGS_RELEASE) -g
 # Source directory.
 SRCS=src
 
+# Test directory.
+TEST=test
+
 # Static object directory.
 OBJS=objs
 
@@ -91,6 +94,31 @@ link-release: setup compile-release
 # Link main.
 	@$(CC) $(CFLAGS_RELEASE) -o $(BINS)/courier $(SRCS)/main.cpp $(OBJS)/*.o
 	@echo "  [+] Created binary ./$(BINS)/courier"
+
+	@echo "Done!"
+
+################################################################################
+#								Test 										   #
+################################################################################
+
+test: setup compile
+	@echo "Compiling test libraries..."
+
+# Compile lexer test functions.
+	@$(CC) $(CFLAGS) -o $(OBJS)/test_lexer.o -c $(TEST)/test_lexer.cpp
+	@echo "  [+] Compiled $(OBJS)/test_lexer.o"
+
+# Compile unit test library.
+	@$(CC) $(CFLAGS) -o $(OBJS)/courier_test.o -c $(TEST)/courier_test/courier_test.cpp
+	@echo "  [+] Compiled $(OBJS)/courier_test.o"
+
+	@echo "Done!"
+
+	@echo "Linking test binaries..."
+
+# Link test main.
+	@$(CC) $(CFLAGS) -o $(BINS)/test_main $(TEST)/test_main.cpp $(OBJS)/*.o
+	@echo "  [+] Created binary ./$(BINS)/test_main"
 
 	@echo "Done!"
 

@@ -48,6 +48,8 @@ public:
     bool is_success(void) const;
     std::string report(void) const;
 
+    // Modifiers.
+    void clear(void);
 };
 
 #endif // _COURIER_SRC_ERROR_ERROR_HPP

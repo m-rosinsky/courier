@@ -8,6 +8,10 @@
 
 #include "error.hpp"
 
+/******************************************************************************/
+/*                          Accessor functions                                */
+/******************************************************************************/
+
 /*!
  * @brief This function returns true only when the status is success.
  */
@@ -15,6 +19,8 @@ bool Error::is_success(void) const
 {
     return _status == ERR_SUCCESS;
 }
+
+/******************************************************************************/
 
 /*!
  * @brief This is a helper function to translate error types into messages.
@@ -41,6 +47,8 @@ static std::string get_err_msg(uint8_t err_type)
     }
 }
 
+/******************************************************************************/
+
 /*!
  * @brief This function generates an error string for the error.
  *
@@ -56,6 +64,21 @@ std::string Error::report(void) const
         ss << ": '" << _msg << "'";
     }
     return ss.str();
+}
+
+/******************************************************************************/
+/*                          Modifier functions                                */
+/******************************************************************************/
+
+/*!
+ * @brief This function clears the error, reseting to default values.
+ */
+void Error::clear(void)
+{
+    _status = ERR_SUCCESS;
+    _msg.clear();
+    _line_num = 0;
+    _col_num = 0;
 }
 
 /***   end of file   ***/
