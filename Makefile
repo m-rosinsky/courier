@@ -64,6 +64,9 @@ compile: setup
 	@$(CC) $(CFLAGS) -o $(OBJS)/object_signed_int.o -c $(SRCS)/object/object_signed_int.cpp
 	@echo "  [+] Compiled ./$(SRCS)/object/object_signed_int.o"
 
+	@$(CC) $(CFLAGS) -o $(OBJS)/object_unsigned_int.o -c $(SRCS)/object/object_unsigned_int.cpp
+	@echo "  [+] Compiled ./$(SRCS)/object/object_unsigned_int.o"
+
 	@echo "Done!"
 
 link: setup compile
@@ -93,6 +96,9 @@ compile-release: setup
 # Compile objects.
 	@$(CC) $(CFLAGS_RELEASE) -o $(OBJS)/object_signed_int.o -c $(SRCS)/object/object_signed_int.cpp
 	@echo "  [+] Compiled ./$(SRCS)/object/object_signed_int.o"
+
+	@$(CC) $(CFLAGS_RELEASE) -o $(OBJS)/object_unsigned_int.o -c $(SRCS)/object/object_unsigned_int.cpp
+	@echo "  [+] Compiled ./$(SRCS)/object/object_unsigned_int.o"
 
 	@echo "Done!"
 

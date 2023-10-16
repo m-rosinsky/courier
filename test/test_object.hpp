@@ -9,8 +9,8 @@
 #ifndef _COURIER_TEST_TEST_OBJECT_HPP
 #define _COURIER_TEST_TEST_OBJECT_HPP
 
-// Valid cases.
 void test_object_signed_int(void);
+void test_object_unsigned_int(void);
 
 #endif // _COURIER_TEST_TEST_OBJECT_HPP
 

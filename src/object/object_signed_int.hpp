@@ -12,7 +12,7 @@
 #include <cstddef>          // uint*_t
 
 /*!
- * @brief This class is the integer object class.
+ * @brief This class is the signed integer object class.
  */
 class ObjectSignedInt : public Object
 {

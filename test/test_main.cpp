@@ -25,6 +25,7 @@ int main()
     // Object test suite.
     CourierTestSuite object_test_suite_1("object_test_suite_1");
     object_test_suite_1.add_test("test_object_signed_int", test_object_signed_int);
+    object_test_suite_1.add_test("test_object_unsigned_int", test_object_unsigned_int);
     courier_test.add_suite(object_test_suite_1);
 
     // Run the tests and return error.

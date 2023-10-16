@@ -16,6 +16,7 @@
 enum OBJECT_TYPE
 {
     OBJECT_TYPE_SIGNED_INT = 0,
+    OBJECT_TYPE_UNSIGNED_INT,
 };
 
 /*!
