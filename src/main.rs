@@ -5,6 +5,7 @@
  */
 
 extern crate clap;
+mod error;
 
 fn main() {
     // Configure clap for command line args.
@@ -22,6 +23,14 @@ fn main() {
         .expect("Input file is a required field");
 
     println!("Input file specified: '{}'", input_file);
+
+    let err = error::CourierError {
+        err_type: error::CourierErrorType::UnknownSymbol,
+        line_num: 3,
+        col_num: 3,
+        msg: String::from("test error"),
+    };
+    err.report();
 }
 
 /***   end of file   ***/
