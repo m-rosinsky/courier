@@ -18,9 +18,10 @@ fn main() {
             .required(true))
         .get_matches();
 
-    if let Some(input_file) = matches.value_of("in_file") {
-        println!("Input file: {}", input_file);
-    }
+    let input_file = matches.value_of("in_file")
+        .expect("Input file is a required field");
+
+    println!("Input file specified: '{}'", input_file);
 }
 
 /***   end of file   ***/
