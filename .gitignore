@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+# Vscode files
+*.vscode*
+
+# Rust build files
+target/*
+
+# Courier test files
+*.cour

@@ -2,7 +2,7 @@
 
 Courier is a lightweight scripting language with a focus on writing quick and dirty client/server applications.
 
-The language is written in C++11.
+The language is written in Rust to target multi-platform builds.
 
 ## Concept and Features
 
