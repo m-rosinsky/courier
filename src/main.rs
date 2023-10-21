@@ -1,11 +1,6 @@
-/*!
- * @file src/main.rs
- *
- * @brief This file containts the main function of the program.
- */
-
 extern crate clap;
 mod error;
+mod lexer;
 
 fn main() {
     // Configure clap for command line args.
@@ -22,15 +17,13 @@ fn main() {
     let input_file = matches.value_of("in_file")
         .expect("Input file is a required field");
 
-    println!("Input file specified: '{}'", input_file);
-
-    let err = error::CourierError {
-        err_type: error::CourierErrorType::UnknownSymbol,
-        line_num: 3,
-        col_num: 3,
-        msg: String::from("test error"),
+    // Lex the input file.
+    let l = lexer::Lexer::new();
+    let _ = match l.lex_file(input_file) {
+        Ok(()) => (),
+        Err(e) => {
+            e.report();
+            std::process::exit(1);
+        }
     };
-    err.report();
 }
-
-/***   end of file   ***/

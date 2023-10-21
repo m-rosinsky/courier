@@ -1,39 +1,22 @@
-/*!
- * @file src/error.rs
- * 
- * @brief This file contains the implementation of the error module,
- *          for reporting errors within Courier code.
- */
-
 extern crate colored;
 use colored::*;
 
-/**
- * @brief This enum defines error types in courier.
- */
+/// This enum enumerates the error types that courier can throw.
 pub enum CourierErrorType {
+    FileError,
     UnknownSymbol,
 }
 
-/**
- * @brief This function maps an error type to its associated report string.
- * 
- * @param[in] err_type The error type to map.
- */
+/// This is a private function that maps error types to strings.
 fn get_err_type_string(err_type: &CourierErrorType) -> &'static str {
     match err_type {
+        CourierErrorType::FileError => "File Error",
         CourierErrorType::UnknownSymbol => "Unknown Symbol",
     }
 }
 
-/**
- * @brief This struct defines an error type.
- * 
- * @param err_type The type of error.
- * @param line_num The line number the error occurred on.
- * @param col_num The column number the error occurred on.
- * @param msg The optional message associated with the error.
- */
+/// This struct defines the error class, which tracks various properties
+/// for error reporting.
 pub struct CourierError {
     pub err_type: CourierErrorType,
     pub line_num: u32,
@@ -43,11 +26,12 @@ pub struct CourierError {
 
 impl CourierError {
 
-/**
- * @brief This function reports the error to stderr.
- */
+/// This function reports an error to stderr.
 pub fn report(&self) {
-    eprint!("{} [{}:{}] ", "Error".red(), self.line_num, self.col_num);
+    eprint!("{} ", "Error".red());
+    if self.line_num != 0 {
+        eprint!("[{}:{}] ", self.line_num, self.col_num);
+    }
     eprint!("{}", get_err_type_string(&self.err_type));
     if !self.msg.is_empty() {
         eprint!(": {}", self.msg);
@@ -56,5 +40,3 @@ pub fn report(&self) {
 }
 
 }
-
-/***   end of file   ***/
