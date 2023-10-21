@@ -54,11 +54,18 @@ compile: setup
 
 # Compile error.
 	@$(CC) $(CFLAGS) -o $(OBJS)/error.o -c $(SRCS)/error/error.cpp
-	@echo "  [+] Compiled ./src/error/error.o"
+	@echo "  [+] Compiled ./$(SRCS)/error/error.o"
 
 # Compile lexer.
 	@$(CC) $(CFLAGS) -o $(OBJS)/lexer.o -c $(SRCS)/lexer/lexer.cpp
-	@echo "  [+] Compiled ./src/lexer/lexer.o"
+	@echo "  [+] Compiled ./$(SRCS)/lexer/lexer.o"
+
+# Compile objects.
+	@$(CC) $(CFLAGS) -o $(OBJS)/object_signed_int.o -c $(SRCS)/object/object_signed_int.cpp
+	@echo "  [+] Compiled ./$(SRCS)/object/object_signed_int.o"
+
+	@$(CC) $(CFLAGS) -o $(OBJS)/object_unsigned_int.o -c $(SRCS)/object/object_unsigned_int.cpp
+	@echo "  [+] Compiled ./$(SRCS)/object/object_unsigned_int.o"
 
 	@echo "Done!"
 
@@ -86,6 +93,13 @@ compile-release: setup
 	@$(CC) $(CFLAGS_RELEASE) -o $(OBJS)/lexer.o -c $(SRCS)/lexer/lexer.cpp
 	@echo "  [+] Compiled ./src/lexer/lexer.o"
 
+# Compile objects.
+	@$(CC) $(CFLAGS_RELEASE) -o $(OBJS)/object_signed_int.o -c $(SRCS)/object/object_signed_int.cpp
+	@echo "  [+] Compiled ./$(SRCS)/object/object_signed_int.o"
+
+	@$(CC) $(CFLAGS_RELEASE) -o $(OBJS)/object_unsigned_int.o -c $(SRCS)/object/object_unsigned_int.cpp
+	@echo "  [+] Compiled ./$(SRCS)/object/object_unsigned_int.o"
+
 	@echo "Done!"
 
 link-release: setup compile-release
@@ -107,6 +121,10 @@ test: setup compile
 # Compile lexer test functions.
 	@$(CC) $(CFLAGS) -o $(OBJS)/test_lexer.o -c $(TEST)/test_lexer.cpp
 	@echo "  [+] Compiled $(OBJS)/test_lexer.o"
+
+# Compile lexer test functions.
+	@$(CC) $(CFLAGS) -o $(OBJS)/test_object.o -c $(TEST)/test_object.cpp
+	@echo "  [+] Compiled $(OBJS)/test_object.o"
 
 # Compile unit test library.
 	@$(CC) $(CFLAGS) -o $(OBJS)/courier_test.o -c $(TEST)/courier_test/courier_test.cpp
