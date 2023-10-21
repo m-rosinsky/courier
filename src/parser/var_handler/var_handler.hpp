@@ -24,12 +24,12 @@ typedef std::shared_ptr<Object> sp_obj_t;
  * @param _name The name of the variable.
  * @param _scope The scope level of the variable.
  */
-typedef struct _var
+struct var_t
 {
     std::string _name;
     uint32_t _scope;
     sp_obj_t _sp_obj;
-} var_t;
+};
 
 /*!
  * @brief This class defines the variable handler context.
