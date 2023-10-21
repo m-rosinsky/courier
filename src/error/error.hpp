@@ -16,17 +16,20 @@
 
 // Success.
 enum err_type_e {
-    ERR_SUCCESS = 0,
+    ERR_SUCCESS = 0,    // success
+
+    // File errors.
+    ERR_FILE_OPEN,      // Error opening input file.
 
     // Syntax errors.
-    ERR_UNREC_SYMB,
-    ERR_INVAL_NUM,
+    ERR_UNREC_SYMB,     // Unrecognized symbol.
+    ERR_INVAL_NUM,      // Invalid numeric literal.
 
     // Memory errors.
-    ERR_MEM_ALLOC,
+    ERR_MEM_ALLOC,      // Memory allocation operation failed.
 
     // Variable errors.
-    ERR_VAR_DUPLICATE,
+    ERR_VAR_DUPLICATE,  // Redeclaration of existing var.
 };
 
 class Error

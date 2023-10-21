@@ -32,6 +32,9 @@ static std::string get_err_msg(err_type_e err_type)
         case ERR_SUCCESS:
             return "Success";
         break;
+        case ERR_FILE_OPEN:
+            return "Unable to open file";
+        break;
         case ERR_UNREC_SYMB:
             return "Unrecognized symbol";
         break;
@@ -60,8 +63,12 @@ static std::string get_err_msg(err_type_e err_type)
 std::string Error::report(void) const
 {
     std::stringstream ss;
-    ss << "Error [Line " << _line_num << ", Col " << _col_num << "]: ";
-    ss << get_err_msg(_status);
+    ss << "\033[31mError\033[0m:";
+    if (_line_num > 0)
+    {
+        ss << " [Line " << _line_num << ", Col " << _col_num << "]:";
+    }
+    ss << " " << get_err_msg(_status);
     if (!_msg.empty())
     {
         ss << ": '" << _msg << "'";

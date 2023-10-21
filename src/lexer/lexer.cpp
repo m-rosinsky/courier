@@ -131,6 +131,8 @@ void Lexer::tokenize_file (const std::string& __fname)
     // Check for open error.
     if (!input_file.is_open())
     {
+        _err._status = ERR_FILE_OPEN;
+        _err._msg = __fname;
         goto EXIT;
     }
 
