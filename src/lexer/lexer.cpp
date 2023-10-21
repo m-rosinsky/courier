@@ -108,7 +108,7 @@ const Error& Lexer::get_error(void) const
 
 /*!
  * @brief This function processes an input file and generates a
- *          vector of lexer_token, representing a tokenized input file.
+ *          vector of token_t, representing a tokenized input file.
  * 
  * @return None, but set _err on error.
  */

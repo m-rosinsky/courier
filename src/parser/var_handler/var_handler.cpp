@@ -17,7 +17,7 @@
 /*!
  * @brief This function gets the number of total variables in the table.
  */
-size_t var_table_t::size(void) const noexcept
+size_t VarTable::size(void) const noexcept
 {
     return _table.size();
 }
@@ -35,7 +35,7 @@ size_t var_table_t::size(void) const noexcept
  * @return The shared_ptr to the object the variable references.
  *          nullptr if the variable is not found.
  */
-sp_obj_t var_table_t::find(const std::string& __name) noexcept
+sp_obj_t VarTable::find(const std::string& __name) noexcept
 {
     for (auto it = _table.begin(); it != _table.end(); ++it)
     {
@@ -53,7 +53,7 @@ sp_obj_t var_table_t::find(const std::string& __name) noexcept
 /*!
  * @brief This function removes all entries from a variable table.
  */
-void var_table_t::clear(void) noexcept
+void VarTable::clear(void) noexcept
 {
     _table.clear();
 }
@@ -69,7 +69,7 @@ void var_table_t::clear(void) noexcept
  * 
  * @return COURIER_ERR.
  */
-err_type_e var_table_t::add(const std::string& __name,
+err_type_e VarTable::add(const std::string& __name,
                             uint32_t __scope,
                             sp_obj_t __sp_obj) noexcept
 {
@@ -110,7 +110,7 @@ err_type_e var_table_t::add(const std::string& __name,
  * 
  * @return COURIER_ERR.
  */
-err_type_e var_table_t::drop_above_scope(uint32_t __scope) noexcept
+err_type_e VarTable::drop_above_scope(uint32_t __scope) noexcept
 {
     // Gather list of iterators for items in the table that have a scope
     // greater than the argument.

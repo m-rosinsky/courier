@@ -36,15 +36,15 @@ typedef struct _var
  *
  * @param _table The variable table.
  */
-class var_table_t
+class VarTable
 {
 private:
     std::vector<var_t> _table;
 
 public:
     // Ctor and dtor.
-    var_table_t() = default;
-    ~var_table_t() = default;
+    VarTable() = default;
+    ~VarTable() = default;
 
     // Accessors.
     size_t size(void) const noexcept;

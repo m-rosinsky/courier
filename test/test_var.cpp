@@ -23,7 +23,7 @@
 void test_var_add(void)
 {
     // Adding nullptr should succeed.
-    var_table_t var_table;
+    VarTable var_table;
     uint8_t result = var_table.add("x", 0, nullptr);
     COURIER_ASSERT_EQUAL(ERR_SUCCESS, result);
 
@@ -42,7 +42,7 @@ void test_var_add(void)
 
 void test_var_add_dupl(void)
 {
-    var_table_t var_table;
+    VarTable var_table;
     uint8_t result = var_table.add("x", 0, nullptr);
     COURIER_ASSERT_EQUAL(ERR_SUCCESS, result);
 
@@ -61,7 +61,7 @@ void test_var_add_dupl(void)
 
 void test_var_drop(void)
 {
-    var_table_t var_table;
+    VarTable var_table;
     std::shared_ptr<ObjectSignedInt> obj = std::make_shared<ObjectSignedInt>(5, 32);
     uint8_t result = var_table.add("x", 0, obj);
     COURIER_ASSERT_EQUAL(ERR_SUCCESS, result);
