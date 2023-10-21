@@ -15,24 +15,26 @@
 /******************************************************************************/
 
 // Success.
-#define ERR_SUCCESS 0
+enum err_type_e {
+    ERR_SUCCESS = 0,
 
-// Syntax Errors.
-#define ERR_UNREC_SYMB 1        // Unrecognized symbol.
-#define ERR_INVAL_NUM 2         // Invalid number.
+    // Syntax errors.
+    ERR_UNREC_SYMB,
+    ERR_INVAL_NUM,
 
-// Memory Errors.
-#define ERR_MEM_ALLOC 3         // Memory allocation error.
+    // Memory errors.
+    ERR_MEM_ALLOC,
 
-// Variable Errors.
-#define ERR_VAR_DUPLICATE 4     // Duplicate variable decl.
+    // Variable errors.
+    ERR_VAR_DUPLICATE,
+};
 
 class Error
 {
 
 public:
 
-    uint8_t _status;
+    err_type_e _status;
     std::string _msg;
     uint32_t _line_num;
     uint32_t _col_num;
@@ -40,11 +42,11 @@ public:
     // Ctors.
     Error()
         : _status(ERR_SUCCESS), _msg("") {}
-    Error(uint8_t __status)
+    Error(err_type_e __status)
         : _status(__status), _msg("") {}
     Error(const std::string& __msg)
         : _status(ERR_SUCCESS), _msg(__msg) {}
-    Error(uint8_t __status, const std::string& __msg)
+    Error(err_type_e __status, const std::string& __msg)
         : _status(__status), _msg(__msg) {}
     
     // Accessors.

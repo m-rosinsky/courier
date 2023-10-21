@@ -49,13 +49,40 @@ void test_var_add_dupl(void)
     // Add duplicate variable.
     result = var_table.add("x", 0, nullptr);
     COURIER_ASSERT_EQUAL(ERR_VAR_DUPLICATE, result);
+
+    // A duplicate variable with a higher scope should
+    // be successful.
+    result = var_table.add("x", 1, nullptr);
+    COURIER_ASSERT_EQUAL(ERR_SUCCESS, result);
 }
 
 
 /******************************************************************************/
 
-/*
-void test_var_drop(void);
-*/
+void test_var_drop(void)
+{
+    var_table_t var_table;
+    std::shared_ptr<ObjectSignedInt> obj = std::make_shared<ObjectSignedInt>(5, 32);
+    uint8_t result = var_table.add("x", 0, obj);
+    COURIER_ASSERT_EQUAL(ERR_SUCCESS, result);
+    result = var_table.add("y", 1, nullptr);
+    COURIER_ASSERT_EQUAL(ERR_SUCCESS, result);
+    result = var_table.add("z", 2, nullptr);
+    COURIER_ASSERT_EQUAL(ERR_SUCCESS, result);
+
+    COURIER_ASSERT_EQUAL(var_table.size(), 3);
+
+    // Dropping all entries above scope 2 should not drop any entries.
+    result = var_table.drop_above_scope(2);
+    COURIER_ASSERT_EQUAL(ERR_SUCCESS, result);
+    COURIER_ASSERT_EQUAL(var_table.size(), 3);
+
+    // Dropping all entries above 0 should drop y and z.
+    result = var_table.drop_above_scope(0);
+    COURIER_ASSERT_EQUAL(ERR_SUCCESS, result);
+    COURIER_ASSERT_EQUAL(var_table.size(), 1);
+    std::shared_ptr<Object> find_result = var_table.find("x");
+    COURIER_ASSERT_EQUAL(find_result, obj);
+}
 
 /***   end of file   ***/

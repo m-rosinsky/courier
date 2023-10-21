@@ -9,9 +9,7 @@
 
 void test_var_add(void);
 void test_var_add_dupl(void);
-/*
 void test_var_drop(void);
-*/
 
 #endif // _COURIER_TEST_VAR_TEST_HPP
 

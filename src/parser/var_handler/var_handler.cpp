@@ -5,6 +5,7 @@
  *          a member of a parser context.
  */
 
+#include <algorithm>            // std::remove_if
 #include <stdexcept>            // std::exception
 
 #include "var_handler.hpp"
@@ -68,9 +69,9 @@ void var_table_t::clear(void) noexcept
  * 
  * @return COURIER_ERR.
  */
-uint8_t var_table_t::add(const std::string& __name,
-                         uint32_t __scope,
-                         sp_obj_t __sp_obj) noexcept
+err_type_e var_table_t::add(const std::string& __name,
+                            uint32_t __scope,
+                            sp_obj_t __sp_obj) noexcept
 {
     // If a variable with the same name exists at the same scope or greater,
     // this is a duplicate declaration.
@@ -109,21 +110,24 @@ uint8_t var_table_t::add(const std::string& __name,
  * 
  * @return COURIER_ERR.
  */
-uint8_t var_table_t::drop_above_scope(uint32_t __scope) noexcept
+err_type_e var_table_t::drop_above_scope(uint32_t __scope) noexcept
 {
-    for (auto it = _table.begin(); it != _table.end(); ++it)
+    // Gather list of iterators for items in the table that have a scope
+    // greater than the argument.
+    auto it = std::remove_if(_table.begin(), _table.end(),
+                             [__scope](const var_t& var)
     {
-        if (it->_scope > __scope)
-        {
-            try
-            {
-                _table.erase(it);
-            }
-            catch (const std::exception& e)
-            {
-                return ERR_MEM_ALLOC;
-            }
-        }
+        return var._scope > __scope;
+    });
+
+    // Erase all items in the iterator list from the table.
+    try
+    {
+        _table.erase(it, _table.end());
+    }
+    catch (std::exception& e)
+    {
+        return ERR_MEM_ALLOC;
     }
 
     return ERR_SUCCESS;

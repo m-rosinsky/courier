@@ -52,10 +52,10 @@ public:
     // Modifiers.
     sp_obj_t find(const std::string& __name) noexcept;
     void clear(void) noexcept;
-    uint8_t add(const std::string& __name,
-                uint32_t __scope,
-                sp_obj_t __sp_obj) noexcept;
-    uint8_t drop_above_scope(uint32_t __scope) noexcept;
+    err_type_e add(const std::string& __name,
+                   uint32_t __scope,
+                   sp_obj_t __sp_obj) noexcept;
+    err_type_e drop_above_scope(uint32_t __scope) noexcept;
 };
 
 #endif // _COURIER_SRC_PARSER_VAR_HANDLER_VAR_HANDLER_HPP

@@ -25,7 +25,7 @@ bool Error::is_success(void) const
 /*!
  * @brief This is a helper function to translate error types into messages.
  */
-static std::string get_err_msg(uint8_t err_type)
+static std::string get_err_msg(err_type_e err_type)
 {
     switch(err_type)
     {
@@ -40,6 +40,9 @@ static std::string get_err_msg(uint8_t err_type)
         break;
         case ERR_MEM_ALLOC:
             return "Memory allocation error";
+        break;
+        case ERR_VAR_DUPLICATE:
+            return "Redeclaration of existing variable";
         break;
         default:
             return "";

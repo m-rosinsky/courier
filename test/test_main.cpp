@@ -33,6 +33,7 @@ int main()
     CourierTestSuite var_test_suite_1("var_test_suite_1");
     var_test_suite_1.add_test("test_var_add", test_var_add);
     var_test_suite_1.add_test("test_var_add_dupl", test_var_add_dupl);
+    var_test_suite_1.add_test("test_var_drop", test_var_drop);
     courier_test.add_suite(var_test_suite_1);
 
     // Run the tests and return error.
