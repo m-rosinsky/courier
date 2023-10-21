@@ -24,6 +24,9 @@
 // Memory Errors.
 #define ERR_MEM_ALLOC 3         // Memory allocation error.
 
+// Variable Errors.
+#define ERR_VAR_DUPLICATE 4     // Duplicate variable decl.
+
 class Error
 {
 

@@ -7,6 +7,7 @@
 #include "courier_test/courier_test.hpp"
 #include "test_lexer.hpp"
 #include "test_object.hpp"
+#include "test_var.hpp"
 
 int main()
 {
@@ -27,6 +28,12 @@ int main()
     object_test_suite_1.add_test("test_object_signed_int", test_object_signed_int);
     object_test_suite_1.add_test("test_object_unsigned_int", test_object_unsigned_int);
     courier_test.add_suite(object_test_suite_1);
+
+    // Variable test suite.
+    CourierTestSuite var_test_suite_1("var_test_suite_1");
+    var_test_suite_1.add_test("test_var_add", test_var_add);
+    var_test_suite_1.add_test("test_var_add_dupl", test_var_add_dupl);
+    courier_test.add_suite(var_test_suite_1);
 
     // Run the tests and return error.
     courier_test.run_tests();
