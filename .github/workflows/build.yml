@@ -38,3 +38,9 @@ jobs:
               run: |
                 echo -e "\n[+] Running test bench...\n"
                 ./bins/test_main
+            
+            # Step 5. Run valgrind
+            - name: Valgrind
+              run: |
+                echo -e "\n[+] Running valgrind...\n"
+                valgrind --leak-check=full ./bins/test_main
