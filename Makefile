@@ -68,6 +68,9 @@ compile: setup
 	@echo "  [+] Compiled ./$(SRCS)/object/object_unsigned_int.cpp"
 
 # Compile parser.
+	@$(CC) $(CFLAGS) -o $(OBJS)/parser.o -c $(SRCS)/parser/parser.cpp
+	@echo "  [+] Compiled $(SRCS)/parser/parser.cpp"
+
 	@$(CC) $(CFLAGS) -o $(OBJS)/var_handler.o -c $(SRCS)/parser/var_handler/var_handler.cpp
 	@echo "  [+] Compiled $(SRCS)/parser/var_handler/var_handler.cpp"
 
@@ -105,6 +108,9 @@ compile-release: setup
 	@echo "  [+] Compiled ./$(SRCS)/object/object_unsigned_int.cpp"
 
 # Compile parser.
+	@$(CC) $(CFLAGS_RELEASE) -o $(OBJS)/parser.o -c $(SRCS)/parser/parser.cpp
+	@echo "  [+] Compiled $(SRCS)/parser/parser.cpp"
+
 	@$(CC) $(CFLAGS_RELEASE) -o $(OBJS)/var_handler.o -c $(SRCS)/parser/var_handler/var_handler.cpp
 	@echo "  [+] Compiled $(SRCS)/parser/var_handler/var_handler.cpp"
 

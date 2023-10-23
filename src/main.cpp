@@ -9,6 +9,7 @@
 #include <vector>
 
 #include "lexer/lexer.hpp"
+#include "parser/parser.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -31,16 +32,18 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    // Dump the table.
-    auto table = lexer.get_table();
-    std::cout << "Lexer token table:" << std::endl;
-    for (auto it = table.begin(); it != table.end(); ++it)
+    // Create parser object.
+    Parser parser;
+
+    // Parse token table from lexer.
+    parser.parse(lexer.get_table(), 0, 0);
+
+    // Perform error checking.
+    if (!parser.get_error().is_success())
     {
-        std::cout << it->get()->_token << " | ";
-        std::cout << static_cast<int>(it->get()->_type) << " | ";
-        std::cout << it->get()->_line_num << " | " << it->get()->_col_num << std::endl;
+        std::cerr << parser.get_error().report() << std::endl;
+        return 1;
     }
-    std::cout << std::endl;
 
     return 0;
 }

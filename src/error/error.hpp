@@ -24,6 +24,7 @@ enum err_type_e {
     // Syntax errors.
     ERR_UNREC_SYMB,     // Unrecognized symbol.
     ERR_INVAL_NUM,      // Invalid numeric literal.
+    ERR_UNEXP_TOKEN,    // Unexpected token.
 
     // Memory errors.
     ERR_MEM_ALLOC,      // Memory allocation operation failed.

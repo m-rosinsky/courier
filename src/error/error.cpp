@@ -38,6 +38,9 @@ static std::string get_err_msg(err_type_e err_type)
         case ERR_UNREC_SYMB:
             return "Unrecognized symbol";
         break;
+        case ERR_UNEXP_TOKEN:
+            return "Unexpected token";
+        break;
         case ERR_INVAL_NUM:
             return "Invalid numeric literal";
         break;
